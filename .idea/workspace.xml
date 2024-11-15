@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6333a33-6477-45d7-9bbc-529e4135c4ad" name="Changes" comment="Texto con colores">
+    <list default="true" id="b6333a33-6477-45d7-9bbc-529e4135c4ad" name="Changes" comment="Texto reutilizable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
@@ -82,12 +82,21 @@
       <option name="project" value="LOCAL" />
       <updated>1731661655452</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Texto reutilizable">
+      <option name="closed" value="true" />
+      <created>1731662386470</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731662386470</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Codelab" />
     <MESSAGE value="Texto con colores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Texto con colores" />
+    <MESSAGE value="Texto reutilizable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Texto reutilizable" />
   </component>
 </project>
