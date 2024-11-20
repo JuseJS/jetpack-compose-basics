@@ -3,7 +3,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -45,18 +44,23 @@ fun caja(texto : String, bgColor : Color = Color.Unspecified) {
 
     Row(modifier = Modifier
         .background(color = bgColor)
-        .padding(rowPadding)
-        .fillMaxWidth()
+        .padding(bottom =  rowPadding)
     ) {
-        Text(
-            text = texto,
+        Column(
             modifier = Modifier.weight(1f)
-        )
+                .padding(start = 24.dp, top = 24.dp)) {
+            Text(
+                text = texto,
+                color = Color.White
+            )
+        }
         Button(
             onClick = {
                 isExtended = !isExtended
                 rowPadding = if (isExtended) 50.dp else 24.dp
-            }
+            },
+            modifier = Modifier
+                .padding(end = 24.dp, top = 24.dp)
         ) {
             Text(text = if (isExtended) "Mostrar Menos" else "Mostras más")
         }
