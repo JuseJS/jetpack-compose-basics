@@ -1,18 +1,11 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,34 +16,41 @@ import androidx.compose.ui.window.application
 @Composable
 @Preview
 fun App() {
-    val textos = listOf(
-        Pair("Que dices tio", Color.Red),
-        Pair("Manolito vende calamares", Color.Yellow),
-        Pair("Carmelo se dio de ostias con lorenzo", Color.Yellow),
-        Pair("Manolo lama comentando este partido de TFT", Color.Red)
-    )
+    val textos = List(50) { index ->
+        val color = if (index % 2 == 0) Color.Red else Color.Yellow
+        "Elemento número $index" to color
+    }
 
     MaterialTheme {
-        Column(modifier = Modifier.fillMaxSize()) {
-            textos.forEach { texto ->
-                caja(texto.first, texto.second)
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            items(textos.size) { index ->
+                val texto = textos[index]
+                Caja(texto.first, texto.second)
             }
         }
     }
 }
 
 @Composable
-fun caja(texto : String, bgColor : Color = Color.Unspecified) {
+fun Caja(texto: String, bgColor: Color = Color.Unspecified) {
     var isExtended by remember { mutableStateOf(false) }
     var rowPadding by remember { mutableStateOf(24.dp) }
 
-    Row(modifier = Modifier
-        .background(color = bgColor)
-        .padding(bottom =  rowPadding)
+    Row(
+        modifier = Modifier
+            .background(color = bgColor)
+            .fillMaxWidth()
+            .padding(bottom = rowPadding),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Column(
-            modifier = Modifier.weight(1f)
-                .padding(start = 24.dp, top = 24.dp)) {
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 24.dp, top = 24.dp)
+        ) {
             Text(
                 text = texto,
                 color = Color.White
@@ -64,7 +64,7 @@ fun caja(texto : String, bgColor : Color = Color.Unspecified) {
             modifier = Modifier
                 .padding(end = 24.dp, top = 24.dp)
         ) {
-            Text(text = if (isExtended) "Mostrar Menos" else "Mostras más")
+            Text(text = if (isExtended) "Mostrar Menos" else "Mostrar más")
         }
     }
 }
@@ -79,7 +79,7 @@ fun OnboardingScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Bienvenido al Codelab!")
+        Text("¡Bienvenido al Codelab!")
         Button(
             modifier = Modifier
                 .padding(vertical = 24.dp),
@@ -89,7 +89,6 @@ fun OnboardingScreen(
         }
     }
 }
-
 
 fun main() = application {
     var shouldShowOnboarding by remember { mutableStateOf(true) }
