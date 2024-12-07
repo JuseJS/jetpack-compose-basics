@@ -1,3 +1,5 @@
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -37,7 +39,10 @@ fun App() {
 @Composable
 fun Caja(texto: String, bgColor: Color = Color.Unspecified) {
     var isExtended by remember { mutableStateOf(false) }
-    var rowPadding by remember { mutableStateOf(24.dp) }
+    val rowPadding by animateDpAsState(
+        targetValue = if (isExtended) 50.dp else 24.dp,
+        animationSpec = tween(durationMillis = 500)
+    )
 
     Row(
         modifier = Modifier
@@ -59,7 +64,6 @@ fun Caja(texto: String, bgColor: Color = Color.Unspecified) {
         Button(
             onClick = {
                 isExtended = !isExtended
-                rowPadding = if (isExtended) 50.dp else 24.dp
             },
             modifier = Modifier
                 .padding(end = 24.dp, top = 24.dp)
